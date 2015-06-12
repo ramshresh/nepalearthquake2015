@@ -1,0 +1,513 @@
+
+
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-param" content="_csrf">
+    <meta name="csrf-token" content="NmgyT25kTUZFEAsaJQcKd1xfYRYpCz0IcBhzPVkIHRYbKlgsGVx7dw==">
+    <title>Update Heritage:  32</title>
+    <link href="/girc/dmis/assets/4a241f54/jquery-ui.css" rel="stylesheet">
+    <link href="/girc/dmis/assets/c0c2bb45/galleryManager.css" rel="stylesheet">
+    <link href="/girc/dmis/assets/dcb3d746/css/bootstrap.css" rel="stylesheet">
+    <link href="/girc/dmis/css/site.css" rel="stylesheet">
+    <link href="/girc/dmis/css/style.css" rel="stylesheet">
+    <link href="/girc/dmis/assets/41df41e1/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/girc/dmis/assets/df74b204/css/AdminLTE.min.css" rel="stylesheet">
+    <link href="/girc/dmis/assets/df74b204/css/skins/_all-skins.min.css" rel="stylesheet">    </head>
+<body class="skin-black-light sidebar-collapse">
+
+<div class="wrapper">
+
+    <header class="main-header">
+
+        <a class="logo" href="/girc/dmis/">Disaster Management Information System</a>
+        <nav class="navbar navbar-static-top" role="navigation">
+
+            <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                <span class="sr-only">Toggle navigation</span>
+            </a>
+
+            <div class="navbar-custom-menu">
+
+                <ul class="nav navbar-nav">
+
+                    <!-- User Account: style can be found in dropdown.less -->
+
+                    <li class="dropdown user user-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <img src="/girc/dmis/img/user-avatar-placeholder.png" class="user-image" alt="User Image"/>
+                            <span class="hidden-xs"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <!-- User image -->
+                            <li class="user-header">
+                                <small>Be a registered user...</small>
+
+                            </li>
+                            <!-- ./User image -->
+
+                            <!-- Menu Body Guest -->
+
+
+                            <!-- Menu Footer-->
+                            <li class="user-footer">
+                                <div class="pull-right">
+                                    <a class="btn btn-default btn-flat" href="/girc/dmis/site/login" data-method="post">Sign In</a>                                </div>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <!-- User Account: style can be found in dropdown.less -->
+
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+
+    <!--<div class="col-lg-12 col-md-12 header">
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-5">
+            <nav class="navbar navbar-inverse" role="navigation">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#">Home</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Help</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+
+                </div>
+
+            </nav>
+        </div>
+        <div class="col-md-1 social-media">
+            <i class="fa fa-facebook" style="color:royalblue;"></i>
+            <i class="fa fa-twitter" style="color:lightblue;"></i>
+        </div>
+        <div class="col-md-2">
+            <ul class="nav navbar-nav nav-right">
+                <li data-toggle="modal" ><a href="<?/*=Url::to(['/site/login'])*/?>">Login</a></li>
+            </ul>
+        </div>
+    </div>-->
+
+    <!-- Models for register ---->
+    <!--<div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Create an Account</h4>
+                </div>
+
+                <div class="form-group" style="padding:0 20px;">
+                    <select name="test" class="selectboxit">
+                        <option value="1">Select Type</option>
+                        <option value="2">Single</option>
+                        <option value="3">Group</option>
+
+                    </select>
+
+                </div>
+                <div class="form-group" style="padding:0 20px;">
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <i class="entypo-user-add"></i>
+                        </div>
+
+                        <input type="text" class="form-control" name="username" id="username" placeholder="Username" data-mask="[a-zA-Z0-1\.]+" data-is-regex="true" autocomplete="off" />
+                    </div>
+                </div>
+                <div class="form-group" style="padding:0 20px;">
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <i class="entypo-mail"></i>
+                        </div>
+
+                        <input type="text" class="form-control" name="email" id="email" data-mask="email" placeholder="E-mail" autocomplete="off" />
+                    </div>
+                </div>
+                <div class="form-group" style="padding:0 20px;">
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <i class="entypo-phone"></i>
+                        </div>
+
+                        <input type="text" class="form-control" name="phone" id="phone" placeholder="Phone Number" data-mask="phone" autocomplete="off" />
+                    </div>
+                </div>
+
+
+                <div class="form-group" style="padding:0 20px;">
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <i class="entypo-lock"></i>
+                        </div>
+
+                        <input type="password" class="form-control" name="password" id="password" placeholder="Enter Password" autocomplete="off" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" style="background-color:#734286;border-color:#734286;">Close</button>
+                    <button type="button" class="btn btn-primary" style="background-color:#04C9A6;border-color:#04C9A6;">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="login" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Login</h4>
+                </div>
+
+                <div class="form-group" style="padding:0 20px;">
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <i class="entypo-mail"></i>
+                        </div>
+
+                        <input type="text" class="form-control" name="email" id="email" data-mask="email" placeholder="E-mail" autocomplete="off" />
+                    </div>
+                </div>
+
+
+                <div class="form-group" style="padding:0 20px;">
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <i class="entypo-lock"></i>
+                        </div>
+
+                        <input type="password" class="form-control" name="password" id="password" placeholder="Choose Password" autocomplete="off" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" style="background-color:#734286;border-color:#734286;">Close</button>
+                    <button type="button" class="btn btn-primary" style="background-color:#04C9A6;border-color:#04C9A6;">Login</button>
+                </div>
+            </div>
+        </div>
+    </div>-->
+    <!-- ends of modals -->
+    <div class="wrapper row-offcanvas row-offcanvas-left">
+        <div class="main-sidebar">
+            <!-- Inner sidebar -->
+            <div class="sidebar">
+
+            </div><!-- /.sidebar -->
+        </div><!-- /.main-sidebar -->            <div class="content-wrapper">
+        <section class="content-header">
+            <h1>
+            </h1>
+            <ul class="breadcrumb"><li><a href="/girc/dmis/">Home</a></li>
+                <li><a href="/girc/dmis/heritage_assessment/crud-heritage/index">Heritages</a></li>
+                <li><a href="/girc/dmis/heritage_assessment/crud-heritage/view?id=32">32</a></li>
+                <li class="active">Update</li>
+            </ul>    </section>
+
+        <section class="content">
+            <div class="heritage-update">
+
+                <!--<h1><?/*= Html::encode($this->title) */?></h1>-->
+
+
+                <div class="heritage-form">
+
+                    <form id="w0" action="/girc/dmis/heritage_assessment/crud-heritage/update?id=32" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="_csrf" value="NmgyT25kTUZFEAsaJQcKd1xfYRYpCz0IcBhzPVkIHRYbKlgsGVx7dw==">
+                        <div class="form-group field-heritage-kitta_no">
+                            <label class="control-label" for="heritage-kitta_no">Kitta No</label>
+                            <input type="text" id="heritage-kitta_no" class="form-control" name="Heritage[kitta_no]" value="">
+
+                            <div class="help-block"></div>
+                        </div>
+                        <div class="form-group field-heritage-inventory_id">
+                            <label class="control-label" for="heritage-inventory_id">Inventory Id</label>
+                            <input type="text" id="heritage-inventory_id" class="form-control" name="Heritage[inventory_id]" value="">
+
+                            <div class="help-block"></div>
+                        </div>
+                        <div class="form-group field-heritage-damage_type">
+                            <label class="control-label" for="heritage-damage_type">Damage Type</label>
+                            <input type="text" id="heritage-damage_type" class="form-control" name="Heritage[damage_type]" value="">
+
+                            <div class="help-block"></div>
+                        </div>
+                        <div class="form-group field-heritage-present_physical_conditions">
+                            <label class="control-label" for="heritage-present_physical_conditions">Present Physical Conditions</label>
+                            <input type="text" id="heritage-present_physical_conditions" class="form-control" name="Heritage[present_physical_conditions]" value="">
+
+                            <div class="help-block"></div>
+                        </div>
+                        <div class="form-group field-heritage-historical_socio_cultural_significance">
+                            <label class="control-label" for="heritage-historical_socio_cultural_significance">Historical Socio Cultural Significance</label>
+                            <input type="text" id="heritage-historical_socio_cultural_significance" class="form-control" name="Heritage[historical_socio_cultural_significance]" value="">
+
+                            <div class="help-block"></div>
+                        </div>
+                        <div class="form-group field-heritage-important_features">
+                            <label class="control-label" for="heritage-important_features">Important Features</label>
+                            <input type="text" id="heritage-important_features" class="form-control" name="Heritage[important_features]" value="">
+
+                            <div class="help-block"></div>
+                        </div>
+                        <div class="form-group field-heritage-items_to_be_preserved_before">
+                            <label class="control-label" for="heritage-items_to_be_preserved_before">Items To Be Preserved Before</label>
+                            <input type="text" id="heritage-items_to_be_preserved_before" class="form-control" name="Heritage[items_to_be_preserved_before]" value="">
+
+                            <div class="help-block"></div>
+                        </div>    <div class="form-group field-heritage-items_to_be_preserved_after">
+                        <label class="control-label" for="heritage-items_to_be_preserved_after">Items To Be Preserved After</label>
+                        <input type="text" id="heritage-items_to_be_preserved_after" class="form-control" name="Heritage[items_to_be_preserved_after]" value="">
+
+                        <div class="help-block"></div>
+                    </div>
+                        <div class="form-group field-heritage-description">
+                            <label class="control-label" for="heritage-description">Description</label>
+                            <textarea id="heritage-description" class="form-control" name="Heritage[description]" rows="3"></textarea>
+
+                            <div class="help-block"></div>
+                        </div>
+                        <div class="form-group field-heritage-recorded_by">
+                            <label class="control-label" for="heritage-recorded_by">Recorded By</label>
+                            <input type="text" id="heritage-recorded_by" class="form-control" name="Heritage[recorded_by]" value="">
+
+                            <div class="help-block"></div>
+                        </div>
+                        <div class="form-group field-heritage-surveyor_opinion_before">
+                            <label class="control-label" for="heritage-surveyor_opinion_before">Surveyor Opinion Before</label>
+                            <input type="text" id="heritage-surveyor_opinion_before" class="form-control" name="Heritage[surveyor_opinion_before]" value="">
+
+                            <div class="help-block"></div>
+                        </div>    <div class="form-group field-heritage-surveyor_opinion_after">
+                        <label class="control-label" for="heritage-surveyor_opinion_after">Surveyor Opinion After</label>
+                        <input type="text" id="heritage-surveyor_opinion_after" class="form-control" name="Heritage[surveyor_opinion_after]" value="">
+
+                        <div class="help-block"></div>
+                    </div>
+
+
+
+
+                        <div class="form-group field-heritage-latitude">
+                            <label class="control-label" for="heritage-latitude">Latitude</label>
+                            <input type="text" id="heritage-latitude" class="form-control" name="Heritage[latitude]">
+
+                            <div class="help-block"></div>
+                        </div>
+                        <div class="form-group field-heritage-longitude">
+                            <label class="control-label" for="heritage-longitude">Longitude</label>
+                            <input type="text" id="heritage-longitude" class="form-control" name="Heritage[longitude]">
+
+                            <div class="help-block"></div>
+                        </div>
+                        <div class="row">
+                            <button id="btn-pointpicker-w0" type="button" class="btn btn-xs btn-danger" style="width: 100%">
+                                <span class="glyphicon glyphicon-globe"></span>&nbsp;Locate on map
+                            </button>
+                        </div>
+
+
+
+
+
+
+
+                        <h5>Before Earthquake Photo</h5><div id="w1" class="gallery-manager">    <!-- Gallery Toolbar -->
+
+                        <div class="btn-toolbar" style="padding:4px">
+                            <div class="btn-group" style="display: inline-block;">
+                                <div class="btn btn-success btn-file" style="display: inline-block">
+                                    <i class="glyphicon glyphicon-plus"></i>Add…                <input type="file" name="image" class="afile" accept="image/*" multiple="multiple"/>
+                                </div>
+                            </div>
+                            <div class="btn-group" style="display: inline-block;">
+
+                                <label class="btn btn-default">
+                                    <input type="checkbox" style="margin-right: 4px;" class="select_all">Select all            </label>
+                                <div class="btn btn-default disabled edit_selected">
+                                    <i class="glyphicon glyphicon-pencil"></i> Edit            </div>
+                                <div class="btn btn-default disabled remove_selected">
+                                    <i class="glyphicon glyphicon-remove"></i> Remove            </div>
+                            </div>
+                        </div>
+
+                        <hr/>
+                        <!-- Gallery Photos -->
+                        <div class="sorter">
+                            <div class="images"></div>
+                            <br style="clear: both;"/>
+                        </div>
+
+                        <!-- Modal window to edit photo information -->
+                        <div class="editor-modal modal fade">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <a class="close" data-dismiss="modal">×</a>
+
+                                        <h3 class="modal-title">Edit information</h3>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form"></div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a href="#" class="btn btn-primary save-changes">
+                                            Save changes                    </a>
+                                        <a href="#" class="btn" data-dismiss="modal">Close</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="overlay">
+                            <div class="overlay-bg">&nbsp;</div>
+                            <div class="drop-hint">
+                                <span class="drop-hint-info">Drop Files Here…</span>
+                            </div>
+                        </div>
+                        <div class="progress-overlay">
+                            <div class="overlay-bg">&nbsp;</div>
+                            <!-- Upload Progress Modal-->
+                            <div class="modal progress-modal">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h3>Uploading images…</h3>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="progress ">
+                                                <div class="progress-bar progress-bar-info progress-bar-striped active upload-progress"
+                                                     role="progressbar">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div><br><h5>After Earthquake Photo</h5><div id="w2" class="gallery-manager">    <!-- Gallery Toolbar -->
+
+                        <div class="btn-toolbar" style="padding:4px">
+                            <div class="btn-group" style="display: inline-block;">
+                                <div class="btn btn-success btn-file" style="display: inline-block">
+                                    <i class="glyphicon glyphicon-plus"></i>Add…                <input type="file" name="image" class="afile" accept="image/*" multiple="multiple"/>
+                                </div>
+                            </div>
+                            <div class="btn-group" style="display: inline-block;">
+
+                                <label class="btn btn-default">
+                                    <input type="checkbox" style="margin-right: 4px;" class="select_all">Select all            </label>
+                                <div class="btn btn-default disabled edit_selected">
+                                    <i class="glyphicon glyphicon-pencil"></i> Edit            </div>
+                                <div class="btn btn-default disabled remove_selected">
+                                    <i class="glyphicon glyphicon-remove"></i> Remove            </div>
+                            </div>
+                        </div>
+
+                        <hr/>
+                        <!-- Gallery Photos -->
+                        <div class="sorter">
+                            <div class="images"></div>
+                            <br style="clear: both;"/>
+                        </div>
+
+                        <!-- Modal window to edit photo information -->
+                        <div class="editor-modal modal fade">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <a class="close" data-dismiss="modal">×</a>
+
+                                        <h3 class="modal-title">Edit information</h3>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form"></div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a href="#" class="btn btn-primary save-changes">
+                                            Save changes                    </a>
+                                        <a href="#" class="btn" data-dismiss="modal">Close</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="overlay">
+                            <div class="overlay-bg">&nbsp;</div>
+                            <div class="drop-hint">
+                                <span class="drop-hint-info">Drop Files Here…</span>
+                            </div>
+                        </div>
+                        <div class="progress-overlay">
+                            <div class="overlay-bg">&nbsp;</div>
+                            <!-- Upload Progress Modal-->
+                            <div class="modal progress-modal">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h3>Uploading images…</h3>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="progress ">
+                                                <div class="progress-bar progress-bar-info progress-bar-striped active upload-progress"
+                                                     role="progressbar">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Update</button>    </div>
+
+                    </form>
+                </div>
+
+            </div>
+        </section>
+    </div>
+
+        <footer class="main-footer">
+            <div class="pull-right hidden-xs">
+                <b>Version</b> 2.0
+            </div>
+            <strong>Developed By <a href="#">Geospatial Lab, Kathmandu University </a>.</strong> With Support of: ICIMOD
+        </footer>        </div>
+</div>
+
+<script src="/girc/dmis/assets/c1072c1e/jquery.js"></script>
+<script src="/girc/dmis/assets/543a8b9d/yii.js"></script>
+<script src="/girc/dmis/assets/543a8b9d/yii.validation.js"></script>
+<script src="/girc/dmis/assets/4a241f54/jquery-ui.js"></script>
+<script src="/girc/dmis/assets/c0c2bb45/jquery.iframe-transport.js"></script>
+<script src="/girc/dmis/assets/c0c2bb45/jquery.galleryManager.js"></script>
+<script src="/girc/dmis/assets/543a8b9d/yii.activeForm.js"></script>
+<script src="/girc/dmis/assets/dcb3d746/js/bootstrap.js"></script>
+<script src="/girc/dmis/js/custom-adminlte-options.js"></script>
+<script src="/girc/dmis/assets/df74b204/js/app.min.js"></script>
+<script type="text/javascript">jQuery(document).ready(function () {
+    $('#w1').galleryManager({"hasName":true,"hasDesc":true,"uploadUrl":"/girc/dmis/heritage_assessment/crud-heritage/galleryApi?type=heritage_before&behaviorName=heritageBeforeGalleryBehavior&galleryId=32&action=ajaxUpload","deleteUrl":"/girc/dmis/heritage_assessment/crud-heritage/galleryApi?type=heritage_before&behaviorName=heritageBeforeGalleryBehavior&galleryId=32&action=delete","updateUrl":"/girc/dmis/heritage_assessment/crud-heritage/galleryApi?type=heritage_before&behaviorName=heritageBeforeGalleryBehavior&galleryId=32&action=changeData","arrangeUrl":"/girc/dmis/heritage_assessment/crud-heritage/galleryApi?type=heritage_before&behaviorName=heritageBeforeGalleryBehavior&galleryId=32&action=order","nameLabel":"Name","descriptionLabel":"Description","photos":[{"id":198,"rank":198,"name":"Buddha","description":"Peace","preview":"/girc/dmis/uploads/images/heritage_assessment/gallery_before\\32\\198\\preview.jpg?_=1226880232"},{"id":200,"rank":200,"name":"Ram","description":"Cartoon","preview":"/girc/dmis/uploads/images/heritage_assessment/gallery_before\\32\\200\\preview.jpg?_=1772630722"},{"id":202,"rank":202,"name":"Sanrakchyan","description":"Developer","preview":"/girc/dmis/uploads/images/heritage_assessment/gallery_before\\32\\202\\preview.jpg?_=1962053155"},{"id":205,"rank":205,"name":"Ram Shrestha","description":"Developer","preview":"/girc/dmis/uploads/images/heritage_assessment/gallery_before\\32\\205\\preview.jpg?_=-2025024849"}]});
+    $('#w2').galleryManager({"hasName":true,"hasDesc":true,"uploadUrl":"/girc/dmis/heritage_assessment/crud-heritage/galleryApi?type=heritage_after&behaviorName=heritageAfterGalleryBehavior&galleryId=32&action=ajaxUpload","deleteUrl":"/girc/dmis/heritage_assessment/crud-heritage/galleryApi?type=heritage_after&behaviorName=heritageAfterGalleryBehavior&galleryId=32&action=delete","updateUrl":"/girc/dmis/heritage_assessment/crud-heritage/galleryApi?type=heritage_after&behaviorName=heritageAfterGalleryBehavior&galleryId=32&action=changeData","arrangeUrl":"/girc/dmis/heritage_assessment/crud-heritage/galleryApi?type=heritage_after&behaviorName=heritageAfterGalleryBehavior&galleryId=32&action=order","nameLabel":"Name","descriptionLabel":"Description","photos":[{"id":199,"rank":199,"name":"llasdlkj","description":"lksjdasdlkasd","preview":"/girc/dmis/uploads/images/heritage_assessment/gallery_after\\32\\199\\preview.jpg?_=-908760002"}]});
+    jQuery('#w0').yiiActiveForm([{"id":"heritage-kitta_no","name":"kitta_no","container":".field-heritage-kitta_no","input":"#heritage-kitta_no","validate":function (attribute, value, messages, deferred, $form) {yii.validation.string(value, messages, {"message":"Kitta No must be a string.","skipOnEmpty":1});}},{"id":"heritage-inventory_id","name":"inventory_id","container":".field-heritage-inventory_id","input":"#heritage-inventory_id","validate":function (attribute, value, messages, deferred, $form) {yii.validation.string(value, messages, {"message":"Inventory Id must be a string.","skipOnEmpty":1});}},{"id":"heritage-damage_type","name":"damage_type","container":".field-heritage-damage_type","input":"#heritage-damage_type","validate":function (attribute, value, messages, deferred, $form) {yii.validation.string(value, messages, {"message":"Damage Type must be a string.","skipOnEmpty":1});}},{"id":"heritage-present_physical_conditions","name":"present_physical_conditions","container":".field-heritage-present_physical_conditions","input":"#heritage-present_physical_conditions","validate":function (attribute, value, messages, deferred, $form) {yii.validation.string(value, messages, {"message":"Present Physical Conditions must be a string.","skipOnEmpty":1});}},{"id":"heritage-historical_socio_cultural_significance","name":"historical_socio_cultural_significance","container":".field-heritage-historical_socio_cultural_significance","input":"#heritage-historical_socio_cultural_significance","validate":function (attribute, value, messages, deferred, $form) {yii.validation.string(value, messages, {"message":"Historical Socio Cultural Significance must be a string.","skipOnEmpty":1});}},{"id":"heritage-important_features","name":"important_features","container":".field-heritage-important_features","input":"#heritage-important_features","validate":function (attribute, value, messages, deferred, $form) {yii.validation.string(value, messages, {"message":"Important Features must be a string.","skipOnEmpty":1});}},{"id":"heritage-items_to_be_preserved_before","name":"items_to_be_preserved_before","container":".field-heritage-items_to_be_preserved_before","input":"#heritage-items_to_be_preserved_before","validate":function (attribute, value, messages, deferred, $form) {yii.validation.string(value, messages, {"message":"Items To Be Preserved Before must be a string.","skipOnEmpty":1});}},{"id":"heritage-items_to_be_preserved_after","name":"items_to_be_preserved_after","container":".field-heritage-items_to_be_preserved_after","input":"#heritage-items_to_be_preserved_after","validate":function (attribute, value, messages, deferred, $form) {yii.validation.string(value, messages, {"message":"Items To Be Preserved After must be a string.","skipOnEmpty":1});}},{"id":"heritage-description","name":"description","container":".field-heritage-description","input":"#heritage-description","validate":function (attribute, value, messages, deferred, $form) {yii.validation.string(value, messages, {"message":"Description must be a string.","skipOnEmpty":1});}},{"id":"heritage-recorded_by","name":"recorded_by","container":".field-heritage-recorded_by","input":"#heritage-recorded_by","validate":function (attribute, value, messages, deferred, $form) {yii.validation.string(value, messages, {"message":"Recorded By must be a string.","skipOnEmpty":1});}},{"id":"heritage-surveyor_opinion_before","name":"surveyor_opinion_before","container":".field-heritage-surveyor_opinion_before","input":"#heritage-surveyor_opinion_before","validate":function (attribute, value, messages, deferred, $form) {yii.validation.string(value, messages, {"message":"Surveyor Opinion Before must be a string.","skipOnEmpty":1});}},{"id":"heritage-surveyor_opinion_after","name":"surveyor_opinion_after","container":".field-heritage-surveyor_opinion_after","input":"#heritage-surveyor_opinion_after","validate":function (attribute, value, messages, deferred, $form) {yii.validation.string(value, messages, {"message":"Surveyor Opinion After must be a string.","skipOnEmpty":1});}},{"id":"heritage-latitude","name":"latitude","container":".field-heritage-latitude","input":"#heritage-latitude","validate":function (attribute, value, messages, deferred, $form) {yii.validation.number(value, messages, {"pattern":/^\s*[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?\s*$/,"message":"Latitude must be a number.","skipOnEmpty":1});}},{"id":"heritage-longitude","name":"longitude","container":".field-heritage-longitude","input":"#heritage-longitude","validate":function (attribute, value, messages, deferred, $form) {yii.validation.number(value, messages, {"pattern":/^\s*[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?\s*$/,"message":"Longitude must be a number.","skipOnEmpty":1});}}], []);
+});</script>    </body>
+</html>
