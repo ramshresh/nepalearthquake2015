@@ -1,0 +1,1 @@
+http://118.91.160.230:8080/geoserver/dmis/wms?service=WMS&version=1.1.0&request=GetMap&layers=dmis:building_household&styles=&bbox=-180.0,-90.0,180.0,90.0&width=660&height=330&srs=EPSG:4326&format=application/openlayers

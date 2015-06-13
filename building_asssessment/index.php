@@ -12,7 +12,7 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>Kathmandu Municipality Heritage Profile - Leaflet</title>
-    <link rel="stylesheet" href="assets/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../heritage/assets/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css"/>
     <style>
         .editor-modal {
@@ -177,14 +177,14 @@
 
 </div>
 
-<script src="assets/jquery/jquery.min.js"></script>
-<script src="assets/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="../heritage/assets/jquery/jquery.min.js"></script>
+<script src="../heritage/assets/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
 
 <script src="http://code.highcharts.com/highcharts.js"></script>
 <script src="http://code.highcharts.com/modules/exporting.js"></script>
 
-<script src="src/adminExtents.js"></script>
+<script src="../heritage/src/adminExtents.js"></script>
 
 
 <!-- requires src/adminExtents.js-->
@@ -216,7 +216,7 @@
             service: 'WFS',
             version: '2.0',
             request: 'GetFeature',
-            typeName: 'dmis:heritage',
+            typeName: 'dmis:building_household',
             outputFormat: 'text/javascript',
             format_options: 'callback:getJson',
             SrsName: 'EPSG:4326'
@@ -224,16 +224,21 @@
         var parameters = L.Util.extend(defaultParameters);
         var URL = owsrootUrl + L.Util.getParamString(parameters);
 
-        var layerWFSHeritage = null;
-        var heritageDetails = null;
-        var heritageUploadedBy = {};
-        var heritagePhotos = [];
-        var heritagePopupContent = '<div id="popup_container-heritage" class="row"></div>'
-        var heritageHighChartsSeries_pie = [];
-        var heritageLegend = {
+        var layer = null;
+        var BuildingDetails = null;
+        var surveyUploadedBy = {};
+        var buildingPhotos = [];
+        var buildingPopupContent = '<div id="popup_container-heritage" class="row"></div>'
+        var hcSeriesData_pie = [];
+
+
+        var buildingLegendData = {
             damage_type: {
-                values: ["no damage", "minor crack", "partial damage", "full damage"],
-                color: ["#40d47e", "#f1c40f", "#d35400", "#e74c3c"]
+                values: ["no damage", "Moderate Damage","Severe damage", "Destroyed", "Collapsed"],
+                color:  ["#fdffsd","#40d47e", "#f1c40f", "#d35400", "#e74c3c"]
+            },
+            construction_type:{
+
             }
         };
 
@@ -254,24 +259,6 @@
                 });
             }
         }
-        function getStyleFunction(legendData,attribute){
-            return function style(feature) {
-                return {
-                    fillColor: getLegendColor(legendData,attribute,feature.properties[attribute]),
-                    weight: 2,
-                    opacity: 1,
-                    color: 'white',
-                    dashArray: '3',
-                    fillOpacity: 0.7
-                };
-            }
-        }
-
-
-        console.log("getStyleFunction(heritageLegend,'damage_type')");
-        console.log(getStyleFunction(heritageLegend,'damage_type'));
-        console.log("getStyleFunction(heritageLegend,'damage_type')");
-
 
         var ajax = $.ajax({
             url: URL,
@@ -282,12 +269,12 @@
                 console.log(response);
                 console.log('response');
 
-                layerWFSHeritage = L.geoJson(response, {
-                    pointToLayer:getPointToLayerFunction(heritageLegend,'damage_type'),
+                layer = L.geoJson(response, {
+                    pointToLayer:getPointToLayerFunction(buildingLegendData,'damage_type'),
                     /*style: function (feature) {
                         return {"marker-color": "#00ff00"};
                     },*/
-                    // style:getStyleFunction(heritageLegend,'damage_type'),
+                    // style:getStyleFunction(buildingLegendData,'damage_type'),
                     onEachFeature: function (feature, layer) {
                         popupOptions = {maxWidth: 200};
                         /*popupContent =
@@ -302,8 +289,8 @@
                             var feature = layer.feature;
                             var id = feature.id.split('.')[1];
 
-                            var heritageDetailAjaxParams = {
-                                url: 'http://118.91.160.230/girc/dmis/api/heritage_assessment/heritages',
+                            var buildingDetailsAjaxParams = {
+                                url: 'http://118.91.160.230/girc/dmis/api/building_assessment/building-households',
                                 data: {
                                     id: id,
                                     fields: 'id',
@@ -311,14 +298,14 @@
                                 }
                             };
 
-                            setHeritageDetails(heritageDetailAjaxParams.url, heritageDetailAjaxParams.data)
+                            setBuildingDetails(buildingDetailsAjaxParams.url, buildingDetailsAjaxParams.data)
                                 .done(function (data) {
-                                    heritagePhotos = [];
-                                    console.log('getHeritageDetails');
-                                    console.log(heritageDetails);
-                                    console.log('getHeritageDetails');
-                                    if (heritageDetails) {
-                                        $.each(heritageDetails, function (heritageDetails_index, heritageDetail) {
+                                    buildingPhotos = [];
+                                    console.log('getBuildingDetails');
+                                    console.log(BuildingDetails);
+                                    console.log('getBuildingDetails');
+                                    if (BuildingDetails) {
+                                        $.each(BuildingDetails, function (BuildingDetails_index, heritageDetail) {
                                             // Before Earthquake GalleryImages
                                             if (heritageDetail.galleryImages) {
                                                 $.each(heritageDetail.galleryImages, function (galleryImages_index, galleryImage) {
@@ -335,46 +322,46 @@
                                                     photo['longitude'] = galleryImage.longitude;
                                                     photo['versions'] = galleryImage.versions;
                                                     photo['links'] = links;
-                                                    heritagePhotos.push(photo);
+                                                    buildingPhotos.push(photo);
                                                 });
                                             }
 
                                             // User
                                             if (heritageDetail.user) {
-                                                var uploadedByUser = heritageDetail.user;
+                                                var surveyUploadedByUser = heritageDetail.user;
                                                 var username = {};
-                                                if (uploadedByUser.full_name) {
-                                                    username = uploadedByUser.full_name;
-                                                } else if (uploadedByUser.username) {
-                                                    username = uploadedByUser.username;
-                                                } else if (uploadedByUser.email) {
-                                                    username = uploadedByUser.email
+                                                if (surveyUploadedByUser.full_name) {
+                                                    username = surveyUploadedByUser.full_name;
+                                                } else if (surveyUploadedByUser.username) {
+                                                    username = surveyUploadedByUser.username;
+                                                } else if (surveyUploadedByUser.email) {
+                                                    username = surveyUploadedByUser.email
                                                 }
-                                                heritageUploadedBy['username'] = username;
+                                                surveyUploadedBy['username'] = username;
                                             }
 
                                         });
                                     }
 
-                                    console.log('heritagePhotos');
-                                    console.log(heritagePhotos);
-                                    console.log('heritagePhotos');
+                                    console.log('buildingPhotos');
+                                    console.log(buildingPhotos);
+                                    console.log('buildingPhotos');
 
-                                    console.log('heritageUploadedBy');
-                                    console.log(heritageUploadedBy);
-                                    console.log('heritageUploadedBy');
-                                    $(heritagePopupContent).empty();
+                                    console.log('surveyUploadedBy');
+                                    console.log(surveyUploadedBy);
+                                    console.log('surveyUploadedBy');
+                                    $(buildingPopupContent).empty();
 
-                                    heritagePopupContent =
+                                    buildingPopupContent =
 
                                         '<p><strong>Inventory Id</strong>' + feature.properties.inventory_id + '</p>' +
                                         '<p><strong>Damage Type</strong>' + feature.properties.damage_type + '</p>' +
-                                        '<p><strong>Uploaded By</strong>' + heritageUploadedBy.username + '</p>';
+                                        '<p><strong>Uploaded By</strong>' + surveyUploadedBy.username + '</p>';
 
                                     $('#popup_container-heritage').empty();
-                                    $('#popup_container-heritage').html(heritagePopupContent);
+                                    $('#popup_container-heritage').html(buildingPopupContent);
 
-                                    setHeritagePhotoCarousel('#photoCarousel_heritage', heritagePhotos, 'preview', 'http://118.91.160.230/girc/dmis');
+                                    setHeritagePhotoCarousel('#photoCarousel_heritage', buildingPhotos, 'preview', 'http://118.91.160.230/girc/dmis');
                                 }
                             );
 
@@ -382,11 +369,11 @@
                             popupSetUser(id, '#popup_user-heritage');
                         });
 
-                        layer.bindPopup(heritagePopupContent, popupOptions);
+                        layer.bindPopup(buildingPopupContent, popupOptions);
                     }
                 }).addTo(map);
 
-               /* var nepal_vdc = L.tileLayer.wms("http://118.91.160.230:8080/geoserver/dmis/ows", {
+                var nepal_vdc = L.tileLayer.wms("http://118.91.160.230:8080/geoserver/dmis/ows", {
                     layers: 'dmis:nepal_vdcs',
                     format: 'image/png',
                     transparent: true,
@@ -395,17 +382,16 @@
                     //attribution: "myattribution"
                 });
                 nepal_vdc.addTo(map);
-*/
                 baseMaps = {
                     "OSM Map": osmLayer
                 };
                 overlayMaps = {
-                    //"VDC": nepal_vdc,
-                    "Heritage": layerWFSHeritage
+                    "VDC": nepal_vdc,
+                    "Heritage": layer
                 };
                 L.control.layers(baseMaps, overlayMaps).addTo(map);
 
-                map.fitBounds(layerWFSHeritage.getBounds());
+                map.fitBounds(layer.getBounds());
             }
         });
 
@@ -422,9 +408,9 @@
                 }
             });
         };
-        getHeritageDetails = function (url, queryData) {
+        getBuildingDetails = function (url, queryData) {
             var queryData = (queryData) ? queryData : {expand: 'galleryImages,user'};
-            var url = (url) ? url : 'http://118.91.160.230/girc/dmis/api/heritage_assessment/heritages';
+            var url = (url) ? url : 'http://118.91.160.230/girc/dmis/api/building_assessment/building-households';
             return $.ajax({
                 url: url,
                 //url: 'http://118.91.160.230/girc/dmis/api/rapid_assessment/report-items/'+id+'/galleries',
@@ -446,13 +432,13 @@
                 }
             });
         };
-        setHeritageDetails = function (url, queryData) {
-            return getHeritageDetails(url, queryData).done(function (data) {
-                heritageDetails = data;
+        setBuildingDetails = function (url, queryData) {
+            return getBuildingDetails(url, queryData).done(function (data) {
+                BuildingDetails = data;
             });
         };
-        resetHeritageDetails = function () {
-            heritageDetails = undefined;
+        resetBuildingDetails = function () {
+            BuildingDetails = undefined;
         };
         setHeritagePhotoCarousel = function (jquerySelector, photoData, photoVersion, webRoot) {
             var webRoot = (webRoot) ? webRoot : 'http://118.91.160.230/girc/dmis';
@@ -487,7 +473,7 @@
         }
         popupSetImage = function (id, imgContainer) {
             $.ajax({
-                url: 'http://118.91.160.230/girc/dmis/api/heritage_assessment/heritages',
+                url: 'http://118.91.160.230/girc/dmis/api/building_assessment/building-households',
                 //url: 'http://118.91.160.230/girc/dmis/api/rapid_assessment/report-items/'+id+'/galleries',
                 data: {
                     expand: 'galleryImages',
@@ -541,7 +527,7 @@
         }
         popupSetUser = function (id, userContainer) {
             $.ajax({
-                url: 'http://118.91.160.230/girc/dmis/api/heritage_assessment/heritages',
+                url: 'http://118.91.160.230/girc/dmis/api/building_assessment/building-households',
                 //url: 'http://118.91.160.230/girc/dmis/api/rapid_assessment/report-items/'+id+'/galleries',
                 data: {
                     expand: 'user',
@@ -583,7 +569,7 @@
         getHeritageUserContribution = function (url, queryData) {
             //#heritageUserContributionTable_count
             var queryData = (queryData) ? queryData : {};
-            var url = (url) ? url : 'http://118.91.160.230/girc/dmis/api/heritage_assessment/heritages/unique-users';
+            var url = (url) ? url : 'http://118.91.160.230/girc/dmis/api/building_assessment/building-households/unique-users';
             return $.ajax({
                 url: url,
                 //url: 'http://118.91.160.230/girc/dmis/api/rapid_assessment/report-items/'+id+'/galleries',
@@ -624,7 +610,7 @@
                 }
             );
         };
-        getHighChartSeries('pie', 'http://118.91.160.230/girc/dmis/api/heritage_assessment/heritages/unique/' + 'damage_type', {}, heritageLegend)
+        getHighChartSeries('pie', 'http://118.91.160.230/girc/dmis/api/building_assessment/building-households/unique/' + 'damage_type', {}, buildingLegendData)
             .done(function (data) {
                 var hcItems = [];
                 var hcColors = [];
@@ -633,22 +619,25 @@
                     hcItems.push(hcItem);
 
 
-                    //var legIdx = heritageLegend['damage_type'].values.indexOf(item.value);
-                    //var hcColor = heritageLegend['damage_type'].color[legIdx];
-                    var hcColor=getLegendColor(heritageLegend,'damage_type',item.value);
+                    //var legIdx = buildingLegendData['damage_type'].values.indexOf(item.value);
+                    //var hcColor = buildingLegendData['damage_type'].color[legIdx];
+                    var hcColor=getLegendColor(buildingLegendData,'damage_type',item.value);
                     hcColors.push(hcColor);
 
                     console.log('highchart data.item');
                     console.log(item);
                     console.log('highchart data.item');
                 });
-                heritageHighChartsSeries_pie = hcItems;
+                hcSeriesData_pie = hcItems;
                 console.log('hcItems');
                 console.log(hcItems);
                 console.log('hcItems');
 
                 seriesData = hcItems;
 
+                console.log('seriesData');
+                console.log(seriesData);
+                console.log('seriesData');
                 // Build the chart
                 $('#chartContainerPie_Heritage').highcharts({
                     colors: hcColors,
@@ -658,7 +647,7 @@
                         plotShadow: false
                     },
                     title: {
-                        text: 'Heritage Survey of Kathmandu Valley after Nepal Earthquake 2015'
+                        text: 'Building Assessment Survey after Nepal Earthquake 2015'
                     },
                     tooltip: {
                         pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -695,7 +684,7 @@
 
             });
 
-        setHeritageUserContribution('#heritageUserContributionTable_count', 'http://118.91.160.230/girc/dmis/api/heritage_assessment/heritages/unique-users', {});
+        setHeritageUserContribution('#heritageUserContributionTable_count', 'http://118.91.160.230/girc/dmis/api/building_assessment/building-households/unique-users', {});
 
 
     });
