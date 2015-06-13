@@ -234,8 +234,8 @@
 
         var buildingLegendData = {
             damage_type: {
-                values: ["no damage", "Moderate Damage","Severe damage", "Destroyed", "Collapsed"],
-                color:  ["#fdffsd","#40d47e", "#f1c40f", "#d35400", "#e74c3c"]
+                values: [ "no damage","Moderate Damage" , "Severe damage" ,  "Collapsed"],
+                color:  ["#40d47e" ,"#f1c40f"          , "#d35400", "#e74c3c"]
             },
             construction_type:{
 
