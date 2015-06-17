@@ -16,13 +16,8 @@
 <link rel="stylesheet" href="../assets/easy_print/easyPrint.css"/>
 <script src="../assets/easy_print/jQuery.print.js" charset="utf-8"></script>
 <script src="../assets/easy_print/leaflet.easyPrint.js" charset="utf-8"></script>
-
+<!--http://bl.ocks.org/gisminister/10001728-->
 <div id="container">
-    <div style="position:absolute; z-index:66543334;left:80px">
-        <p>Reference: <a href="http://bl.ocks.org/gisminister/10001728">gisminister’s block #10001728 April 6, 2014,
-                Markercluster pie charts</a></p>
-    </div>
-    <div style="clear:both;"></div>
     <div id="map"/>
 </div>
 <script>
